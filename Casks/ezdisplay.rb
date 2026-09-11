@@ -9,15 +9,15 @@
 #
 #     version=1.0.0
 #     sha=$(shasum -a 256 EZDisplay-${version}.zip | cut -d' ' -f1)
-#     sed -e "s/1.0.1/${version}/" -e "s/c539accb6ef0e4b2e3827b383dcfe91fbbf0a5f52b7f775bb8cc1041eb758891/${sha}/" etc/ezdisplay.rb \
+#     sed -e "s/1.0.2/${version}/" -e "s/49a866c68927f6921589ddbae914462d94c9ecf081ec7f9ceab6207181ac79af/${sha}/" etc/ezdisplay.rb \
 #         > ../homebrew-tap/Casks/ezdisplay.rb
 #
 # The placeholders are quoted strings, so this file parses as Ruby either way
 # and `ruby -c` is a real check on it.
 
 cask "ezdisplay" do
-  version "1.0.1"
-  sha256 "c539accb6ef0e4b2e3827b383dcfe91fbbf0a5f52b7f775bb8cc1041eb758891"
+  version "1.0.2"
+  sha256 "49a866c68927f6921589ddbae914462d94c9ecf081ec7f9ceab6207181ac79af"
 
   url "https://github.com/davidnoyes/EZDisplay/releases/download/v#{version}/EZDisplay-#{version}.zip",
       verified: "github.com/davidnoyes/EZDisplay/"
@@ -30,8 +30,17 @@ cask "ezdisplay" do
     strategy :github_latest
   end
 
-  # EZDisplay updates itself from its About panel, so Homebrew is told not to
-  # race it. `brew upgrade --greedy` still takes a newer cask when there is one.
+  # EZDisplay updates itself from its About panel. This records that, but it no
+  # longer keeps `brew upgrade` away: since Homebrew 6.0 an auto-updating cask
+  # is upgraded whenever the tap is newer than the version Homebrew reads out of
+  # the installed bundle. Measured against 6.0.22, plain `brew upgrade` takes
+  # EZDisplay, and no `--greedy` is needed.
+  #
+  # Reading the bundle rather than its own receipt is what makes that safe, and
+  # it is the reason to keep this stanza: after the app has updated itself,
+  # Homebrew sees the new version on disk and leaves it alone instead of
+  # reinstalling over the top. Anyone who wants Homebrew to keep away entirely
+  # sets HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS=1.
   auto_updates true
 
   depends_on macos: :big_sur
