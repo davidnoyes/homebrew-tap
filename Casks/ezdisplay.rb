@@ -19,8 +19,7 @@ cask "ezdisplay" do
   version "1.0.3"
   sha256 "840ebf5c567ccd6aa82f286fc3f814ca090c2091bcd50c61324469f07dd8ec43"
 
-  url "https://github.com/davidnoyes/EZDisplay/releases/download/v#{version}/EZDisplay-#{version}.zip",
-      verified: "github.com/davidnoyes/EZDisplay/"
+  url "https://github.com/davidnoyes/EZDisplay/releases/download/v#{version}/EZDisplay-#{version}.zip"
   name "EZDisplay"
   desc "Menu bar app for display resolution, refresh rate, HDR, and color"
   homepage "https://github.com/davidnoyes/EZDisplay"
