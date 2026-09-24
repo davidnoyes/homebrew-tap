@@ -9,15 +9,15 @@
 #
 #     version=1.0.0
 #     sha=$(shasum -a 256 EZDisplay-${version}.zip | cut -d' ' -f1)
-#     sed -e "s/1.0.3/${version}/" -e "s/840ebf5c567ccd6aa82f286fc3f814ca090c2091bcd50c61324469f07dd8ec43/${sha}/" etc/ezdisplay.rb \
+#     sed -e "s/1.0.4/${version}/" -e "s/6b676d402134420fa94250b60bab8cae3c37df5855228f20693a9c0da6ee2d65/${sha}/" etc/ezdisplay.rb \
 #         > ../homebrew-tap/Casks/ezdisplay.rb
 #
 # The placeholders are quoted strings, so this file parses as Ruby either way
 # and `ruby -c` is a real check on it.
 
 cask "ezdisplay" do
-  version "1.0.3"
-  sha256 "840ebf5c567ccd6aa82f286fc3f814ca090c2091bcd50c61324469f07dd8ec43"
+  version "1.0.4"
+  sha256 "6b676d402134420fa94250b60bab8cae3c37df5855228f20693a9c0da6ee2d65"
 
   url "https://github.com/davidnoyes/EZDisplay/releases/download/v#{version}/EZDisplay-#{version}.zip"
   name "EZDisplay"
@@ -42,7 +42,7 @@ cask "ezdisplay" do
   # sets HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS=1.
   auto_updates true
 
-  depends_on macos: :big_sur
+  depends_on macos: :monterey
   depends_on arch: :arm64
 
   app "EZDisplay.app"
