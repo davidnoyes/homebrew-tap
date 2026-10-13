@@ -9,15 +9,15 @@
 #
 #     version=1.0.0
 #     sha=$(shasum -a 256 EZDisplay-${version}.zip | cut -d' ' -f1)
-#     sed -e "s/1.0.6/${version}/" -e "s/bf83a64e68fba3508591215f7f1648a939fcb7e72c3ce525aceec5c922182a04/${sha}/" etc/ezdisplay.rb \
+#     sed -e "s/1.0.7/${version}/" -e "s/722f757136e2859e0eab034c42ac8703f93bb27cce9fddbc47c7569e011399aa/${sha}/" etc/ezdisplay.rb \
 #         > ../homebrew-tap/Casks/ezdisplay.rb
 #
 # The placeholders are quoted strings, so this file parses as Ruby either way
 # and `ruby -c` is a real check on it.
 
 cask "ezdisplay" do
-  version "1.0.6"
-  sha256 "bf83a64e68fba3508591215f7f1648a939fcb7e72c3ce525aceec5c922182a04"
+  version "1.0.7"
+  sha256 "722f757136e2859e0eab034c42ac8703f93bb27cce9fddbc47c7569e011399aa"
 
   url "https://github.com/davidnoyes/EZDisplay/releases/download/v#{version}/EZDisplay-#{version}.zip"
   name "EZDisplay"
